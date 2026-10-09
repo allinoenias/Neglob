@@ -69,10 +69,12 @@ export const PresentationMode: React.FC<PresentationModeProps> = ({
           </button>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full text-[#9494a8] hover:text-white hover:bg-[#202038] transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-[#1e1e34] hover:bg-[#282848] text-white hover:text-[#c8ff25] border border-[#2f2f4e] transition-colors shadow-sm active:scale-95"
             title="Exit Presentation Mode (Esc)"
+            aria-label="Close presentation mode"
           >
-            <X className="w-5 h-5" />
+            <span>Close</span>
+            <X className="w-3.5 h-3.5 text-[#c8ff25]" />
           </button>
         </div>
       </header>

@@ -99,13 +99,14 @@ export const InteractivePlannerModal: React.FC<InteractivePlannerModalProps> = (
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-2xl bg-[#141424] border border-[#2a2a46] rounded-3xl p-6 sm:p-10 text-white shadow-2xl z-10 my-8 overflow-hidden"
+          className="relative w-full max-w-2xl bg-[#141424] border border-[#2a2a46] rounded-3xl p-5 sm:p-10 text-white shadow-2xl z-10 my-6 sm:my-8 overflow-hidden"
         >
-          {/* Close button */}
+          {/* Prominent High-Contrast Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-6 right-6 p-2 rounded-full text-[#9494a8] hover:text-white hover:bg-[#202038] transition-colors"
-            aria-label="Close modal"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 rounded-full bg-[#202038] hover:bg-[#2e2e50] border border-[#38385e] hover:border-[#c8ff25]/40 text-white hover:text-[#c8ff25] flex items-center justify-center transition-all shadow-md active:scale-90 z-20"
+            aria-label="Close popup window"
+            title="Close"
           >
             <X className="w-5 h-5" />
           </button>
@@ -274,10 +275,10 @@ export const InteractivePlannerModal: React.FC<InteractivePlannerModalProps> = (
                 </div>
 
                 {/* Actions */}
-                <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+                <div className="pt-2 flex flex-col sm:flex-row items-center gap-2.5">
                   <button
                     type="submit"
-                    className="w-full sm:flex-1 py-3 px-6 rounded-full text-xs font-bold uppercase tracking-wider bg-[#c8ff25] text-[#0f0f1d] hover:bg-[#d8ff4f] transition-all flex items-center justify-center gap-2"
+                    className="w-full sm:flex-1 py-3 px-6 rounded-full text-xs font-bold uppercase tracking-wider bg-[#c8ff25] text-[#0f0f1d] hover:bg-[#d8ff4f] transition-all flex items-center justify-center gap-2 shadow-md active:scale-95"
                   >
                     <span>Request Action Plan</span>
                     <ArrowRight className="w-4 h-4" />
@@ -287,11 +288,19 @@ export const InteractivePlannerModal: React.FC<InteractivePlannerModalProps> = (
                     href={`https://wa.me/918486820329?text=${whatsappMessage}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-full sm:w-auto py-3 px-5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#25D366] text-black hover:bg-[#20ba59] transition-all flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto py-3 px-5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#25D366] text-black hover:bg-[#20ba59] transition-all flex items-center justify-center gap-2 shadow-md active:scale-95"
                   >
                     <MessageSquare className="w-4 h-4" />
                     <span>WhatsApp</span>
                   </a>
+
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="w-full sm:w-auto py-3 px-5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#1c1c30] hover:bg-[#272744] text-[#9494a8] hover:text-white border border-[#2e2e4e] transition-colors active:scale-95"
+                  >
+                    Close
+                  </button>
                 </div>
               </form>
             </div>

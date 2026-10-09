@@ -161,10 +161,21 @@ export const Navbar: React.FC<NavbarProps> = ({
                 transition={{ duration: 0.25, ease: "easeOut" }}
                 className="md:hidden fixed top-16 left-0 right-0 z-40 bg-[#121222] border-b border-[#2c2c48] shadow-2xl px-5 py-6 max-h-[calc(100vh-4rem)] overflow-y-auto"
               >
-                {/* Menu Title */}
-                <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#262640] text-[11px] font-bold tracking-widest text-[#9494a8] uppercase">
-                  <span>Navigation Menu</span>
-                  <span className="text-[#c8ff25]">6 Sections</span>
+                {/* Menu Header with clear Close Button */}
+                <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#262640]">
+                  <div className="flex items-center gap-2 text-[11px] font-bold tracking-widest text-[#9494a8] uppercase">
+                    <span className="w-2 h-2 rounded-full bg-[#c8ff25]" />
+                    <span>Navigation Menu</span>
+                    <span className="text-[#7b5cfa]">· 6 Sections</span>
+                  </div>
+                  <button
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1e1e34] hover:bg-[#282848] text-white hover:text-[#c8ff25] border border-[#2f2f4e] text-xs font-bold transition-all active:scale-95 shadow-sm"
+                    aria-label="Close navigation popup"
+                  >
+                    <span>Close</span>
+                    <X className="w-3.5 h-3.5 text-[#c8ff25]" />
+                  </button>
                 </div>
 
                 {/* Navigation links list */}
@@ -225,6 +236,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <span>WhatsApp</span>
                     </a>
                   </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full py-2.5 rounded-xl bg-[#18182c] hover:bg-[#202038] text-[#9494a8] hover:text-white border border-[#2a2a46] text-xs font-semibold uppercase tracking-wider transition-colors active:scale-95"
+                  >
+                    Close Menu
+                  </button>
                 </div>
 
                 {/* Footer notes in drawer */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, useScroll, useTransform, useSpring } from 'motion/react';
 
 interface ParallaxShapesProps {
   currentSectionIndex?: number;
@@ -8,64 +8,107 @@ interface ParallaxShapesProps {
 export const ParallaxShapes: React.FC<ParallaxShapesProps> = () => {
   const { scrollYProgress } = useScroll();
 
-  // Scroll transforms for floating organic shapes
-  const yViolet = useTransform(scrollYProgress, [0, 1], [0, 400]);
-  const scaleViolet = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.15, 0.9]);
-  
-  const yCoralRing = useTransform(scrollYProgress, [0, 1], [0, -300]);
-  const rotateCoral = useTransform(scrollYProgress, [0, 1], [0, 180]);
-  
-  const yLime = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const scaleLime = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.2, 0.95]);
+  // Smooth physics spring damping to eliminate scroll jank/lag
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 24,
+    mass: 0.2
+  });
+
+  // Scroll transforms for floating organic shapes from the brochure
+  const yVioletRaw = useTransform(smoothProgress, [0, 1], [0, 320]);
+  const scaleVioletRaw = useTransform(smoothProgress, [0, 0.5, 1], [1, 1.08, 0.94]);
+
+  const yCoralRingRaw = useTransform(smoothProgress, [0, 1], [0, -260]);
+  const rotateCoralRaw = useTransform(smoothProgress, [0, 1], [0, 90]);
+
+  const yLimeRaw = useTransform(smoothProgress, [0, 1], [0, -180]);
+  const scaleLimeRaw = useTransform(smoothProgress, [0, 0.5, 1], [1, 1.15, 0.95]);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
-      {/* Top Right Violet Sphere (from PDF Cover, Page 6 & 8) */}
+    <div
+      className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none"
+      aria-hidden="true"
+    >
+      {/* 1. Top Right Violet Sphere (from PDF Cover, Page 6 & 8) */}
       <motion.div
-        style={{ y: yViolet, scale: scaleViolet }}
-        animate={{
-          x: [0, 15, 0],
-          y: [0, -20, 0]
+        style={{
+          y: yVioletRaw,
+          scale: scaleVioletRaw,
+          willChange: 'transform'
         }}
-        transition={{
-          repeat: Infinity,
-          duration: 12,
-          ease: "easeInOut"
-        }}
-        className="absolute -top-24 -right-24 md:-top-32 md:-right-32 w-80 h-80 md:w-[480px] md:h-[480px] rounded-full bg-[#7b5cfa] opacity-80 blur-[0.5px] shadow-[0_0_120px_rgba(123,92,250,0.3)]"
-      />
+        className="absolute -top-20 -right-20 sm:-top-28 sm:-right-28 md:-top-36 md:-right-36 w-60 h-60 sm:w-80 sm:h-80 md:w-[460px] md:h-[460px]"
+      >
+        <motion.div
+          animate={{
+            x: [0, 12, -8, 0],
+            y: [0, -15, 8, 0]
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 14,
+            ease: "easeInOut"
+          }}
+          className="w-full h-full rounded-full bg-[#7b5cfa] opacity-65 sm:opacity-80"
+          style={{
+            filter: 'drop-shadow(0 0 60px rgba(123, 92, 250, 0.25))'
+          }}
+        />
+      </motion.div>
 
-      {/* Mid Right Hollow Coral Ring (from PDF Page 1) */}
+      {/* 2. Mid Right Hollow Coral Ring (from PDF Page 1) */}
       <motion.div
-        style={{ y: yCoralRing, rotate: rotateCoral }}
-        animate={{
-          scale: [1, 1.05, 1]
+        style={{
+          y: yCoralRingRaw,
+          rotate: rotateCoralRaw,
+          willChange: 'transform'
         }}
-        transition={{
-          repeat: Infinity,
-          duration: 9,
-          ease: "easeInOut"
-        }}
-        className="absolute top-[48vh] -right-16 md:right-[6vw] w-48 h-48 md:w-64 md:h-64 rounded-full border-[14px] md:border-[18px] border-[#ff5c77] opacity-85 shadow-[0_0_80px_rgba(255,92,119,0.25)]"
-      />
+        className="absolute top-[42vh] -right-12 sm:right-[3vw] md:right-[6vw] w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64"
+      >
+        <motion.div
+          animate={{
+            scale: [1, 1.04, 0.98, 1]
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 8,
+            ease: "easeInOut"
+          }}
+          className="w-full h-full rounded-full border-[10px] sm:border-[14px] md:border-[18px] border-[#ff5c77] opacity-60 sm:opacity-85"
+          style={{
+            filter: 'drop-shadow(0 0 40px rgba(255, 92, 119, 0.2))'
+          }}
+        />
+      </motion.div>
 
-      {/* Lower Electric Lime Sphere (from PDF Page 1, 2, 5) */}
+      {/* 3. Lower Electric Lime Sphere (from PDF Page 1, 2, 5) */}
       <motion.div
-        style={{ y: yLime, scale: scaleLime }}
-        animate={{
-          y: [0, 25, 0],
-          x: [0, -10, 0]
+        style={{
+          y: yLimeRaw,
+          scale: scaleLimeRaw,
+          willChange: 'transform'
         }}
-        transition={{
-          repeat: Infinity,
-          duration: 10,
-          ease: "easeInOut"
-        }}
-        className="absolute top-[78vh] right-[18vw] md:right-[26vw] w-24 h-24 md:w-36 md:h-36 rounded-full bg-[#c8ff25] opacity-90 shadow-[0_0_90px_rgba(200,255,37,0.3)]"
-      />
+        className="absolute top-[72vh] right-[10vw] sm:right-[18vw] md:right-[24vw] w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36"
+      >
+        <motion.div
+          animate={{
+            y: [0, 16, -10, 0],
+            x: [0, -10, 6, 0]
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 11,
+            ease: "easeInOut"
+          }}
+          className="w-full h-full rounded-full bg-[#c8ff25] opacity-70 sm:opacity-90"
+          style={{
+            filter: 'drop-shadow(0 0 45px rgba(200, 255, 37, 0.25))'
+          }}
+        />
+      </motion.div>
 
-      {/* Subtle Ambient Vignette & Grain Tint */}
-      <div className="absolute inset-0 bg-radial from-transparent via-[#0f0f1d]/40 to-[#0f0f1d]/90 pointer-events-none" />
+      {/* Subtle Ambient Vignette Overlay */}
+      <div className="absolute inset-0 bg-radial from-transparent via-[#0f0f1d]/30 to-[#0f0f1d]/85 pointer-events-none" />
     </div>
   );
 };

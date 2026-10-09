@@ -84,33 +84,38 @@ export const ContactHowWeWorkSection: React.FC = () => {
   );
 
   return (
-    <section id="work-contact" className="relative min-h-screen py-24 border-t border-[#262640]/40 flex flex-col justify-between">
-      <div className="max-w-7xl mx-auto px-6 w-full relative z-10 my-auto">
+    <section id="work-contact" className="relative min-h-[90vh] sm:min-h-screen py-16 sm:py-24 border-t border-[#262640]/40 flex flex-col justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10 my-auto">
         {/* Header Metadata */}
-        <div className="flex items-center justify-between text-xs tracking-wider uppercase mb-8">
-          <span className="text-[#c8ff25] font-bold tracking-widest">HOW WE WORK</span>
+        <div className="flex items-center justify-between text-xs tracking-wider uppercase mb-6 sm:mb-8">
+          <span className="text-[#c8ff25] font-bold tracking-widest flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#c8ff25]" />
+            HOW WE WORK
+          </span>
           <span className="font-mono text-[#9494a8]">08 / 08</span>
         </div>
 
         {/* 4-Stage Process Horizontal Bar from PDF Page 8 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-          {WORK_PROCESS.map((step) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16 sm:mb-20">
+          {WORK_PROCESS.map((step, idx) => (
             <motion.div
               key={step.stage}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="p-6 rounded-2xl bg-[#171728]/60 border border-[#262640] relative overflow-hidden"
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ delay: idx * 0.1, duration: 0.4 }}
+              whileHover={{ y: -3 }}
+              className="p-5 sm:p-6 rounded-2xl bg-[#171728]/70 border border-[#262640] relative overflow-hidden transition-all shadow-md"
             >
               {/* Colorful top border accent from PDF */}
               <div
                 className="absolute top-0 left-0 right-0 h-1.5"
                 style={{ backgroundColor: step.color }}
               />
-              <h3 className="text-xl font-bold text-white mb-2 tracking-tight">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5 sm:mb-2 tracking-tight">
                 {step.stage}
               </h3>
-              <p className="text-sm text-[#a0a0b8] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#a0a0b8] leading-relaxed">
                 {step.description}
               </p>
             </motion.div>
@@ -118,25 +123,32 @@ export const ContactHowWeWorkSection: React.FC = () => {
         </div>
 
         {/* Main Grid: Headline + Contact Details (Left) & Interactive Planner Form (Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-12 sm:mb-16">
           {/* Left Column: Big Headline & Direct Contact from PDF */}
           <div className="lg:col-span-6">
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-white mb-6 leading-[0.98]"
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-white mb-4 sm:mb-6 leading-[0.98]"
             >
               Let's build<br />
-              something loud.
+              <span className="text-[#c8ff25]">something loud.</span>
             </motion.h2>
 
-            <p className="text-lg text-[#a0a0b8] max-w-md mb-10 leading-relaxed font-normal">
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ delay: 0.15, duration: 0.7 }}
+              className="text-base sm:text-lg text-[#a0a0b8] max-w-md mb-8 sm:mb-10 leading-relaxed font-normal"
+            >
               Tell us what you're working on. We'll reply with a plan, not a pitch.
-            </p>
+            </motion.p>
 
             {/* Direct Contact Links matching PDF layout */}
-            <div className="space-y-4 max-w-md">
+            <div className="space-y-3 sm:space-y-4 max-w-md">
               {/* Phone */}
               <div className="flex items-center justify-between p-4 rounded-2xl bg-[#171728]/80 border border-[#262640] hover:border-[#38385e] transition-colors group">
                 <a

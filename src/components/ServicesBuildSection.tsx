@@ -11,72 +11,78 @@ export const ServicesBuildSection: React.FC<ServicesBuildSectionProps> = ({ onNe
   const getIcon = (icon: string) => {
     switch (icon) {
       case 'instagram':
-        return <Instagram className="w-7 h-7" />;
+        return <Instagram className="w-6 h-6 sm:w-7 sm:h-7" />;
       case 'code':
-        return <Code className="w-7 h-7" />;
+        return <Code className="w-6 h-6 sm:w-7 sm:h-7" />;
       case 'monitor':
-        return <Laptop className="w-7 h-7" />;
+        return <Laptop className="w-6 h-6 sm:w-7 sm:h-7" />;
       default:
-        return <Code className="w-7 h-7" />;
+        return <Code className="w-6 h-6 sm:w-7 sm:h-7" />;
     }
   };
 
   return (
-    <section id="services-build" className="relative min-h-screen py-24 border-t border-[#262640]/40 flex flex-col justify-between">
-      <div className="max-w-7xl mx-auto px-6 w-full relative z-10 my-auto">
+    <section id="services-build" className="relative min-h-[90vh] sm:min-h-screen py-16 sm:py-24 border-t border-[#262640]/40 flex flex-col justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10 my-auto">
         {/* Section Header */}
-        <div className="flex items-center justify-between text-xs tracking-wider uppercase mb-8">
-          <span className="text-[#c8ff25] font-bold tracking-widest">
+        <div className="flex items-center justify-between text-xs tracking-wider uppercase mb-6 sm:mb-8">
+          <span className="text-[#c8ff25] font-bold tracking-widest flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#c8ff25]" />
             SERVICES · BUILD · FOR EVERY BUSINESS
           </span>
           <span className="font-mono text-[#9494a8]">04 / 08</span>
         </div>
 
         {/* Headline */}
-        <div className="max-w-3xl mb-14">
+        <div className="max-w-3xl mb-12 sm:mb-14">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white mb-4 leading-[1.05]"
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white mb-3 sm:mb-4 leading-[1.08]"
           >
             Show up everywhere.<br />
-            Build it properly.
+            <span className="text-white">Build it properly.</span>
           </motion.h2>
-          <p className="text-base sm:text-lg text-[#a0a0b8]">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ delay: 0.15, duration: 0.7 }}
+            className="text-base sm:text-lg text-[#a0a0b8]"
+          >
             Complete digital execution across social channels, custom web architecture, and production software.
-          </p>
+          </motion.p>
         </div>
 
         {/* 3 Full-Width Stacked Cards from PDF Page 4 */}
-        <div className="space-y-6 mb-16">
+        <div className="space-y-5 sm:space-y-6 mb-12 sm:mb-16">
           {BUILD_SERVICES.map((card, idx) => (
             <motion.div
               key={card.id}
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.12, duration: 0.35 }}
-              whileHover={{ scale: 1.01 }}
-              className={`rounded-3xl p-8 sm:p-10 ${card.bgClass} shadow-xl transition-all relative overflow-hidden`}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: idx * 0.14, duration: 0.45 }}
+              whileHover={{ y: -4 }}
+              className={`rounded-3xl p-6 sm:p-8 md:p-10 ${card.bgClass} shadow-xl transition-all relative overflow-hidden`}
             >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6">
-                <div className="flex items-center gap-4">
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 ${card.iconBg}`}>
-                    {getIcon(card.icon)}
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                    {card.title}
-                  </h3>
+              <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center shrink-0 ${card.iconBg}`}>
+                  {getIcon(card.icon)}
                 </div>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
+                  {card.title}
+                </h3>
               </div>
 
-              <p className="text-base sm:text-lg mb-8 max-w-3xl leading-relaxed opacity-90">
+              <p className="text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-3xl leading-relaxed opacity-90">
                 {card.description}
               </p>
 
               {/* Badges strip from PDF */}
-              <div className="pt-6 border-t border-current/15 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm font-bold tracking-wider uppercase opacity-85">
+              <div className="pt-4 sm:pt-6 border-t border-current/15 flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-2 text-[11px] sm:text-xs md:text-sm font-bold tracking-wider uppercase opacity-85">
                 {card.badges.map((b, i) => (
                   <React.Fragment key={b}>
                     <span>{b}</span>
@@ -89,14 +95,14 @@ export const ServicesBuildSection: React.FC<ServicesBuildSectionProps> = ({ onNe
         </div>
 
         {/* Page Footer Navigation */}
-        <div className="mt-8 pt-6 border-t border-[#262640]/50 flex items-center justify-between text-xs text-[#9494a8]">
+        <div className="mt-8 pt-5 sm:pt-6 border-t border-[#262640]/50 flex items-center justify-between text-xs text-[#9494a8]">
           <span>neglob partners · Jorhat, Assam</span>
           <button
             onClick={onNextPage}
             className="group flex items-center gap-1.5 text-white hover:text-[#c8ff25] transition-colors"
           >
             <span>Next: for product brands</span>
-            <span className="group-hover:translate-x-1 transition-transform">→</span>
+            <span className="group-hover:translate-x-1 transition-transform text-[#c8ff25]">→</span>
           </button>
         </div>
       </div>

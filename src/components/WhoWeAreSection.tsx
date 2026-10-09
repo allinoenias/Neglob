@@ -9,56 +9,59 @@ interface WhoWeAreSectionProps {
 
 export const WhoWeAreSection: React.FC<WhoWeAreSectionProps> = ({ onNextPage }) => {
   return (
-    <section id="who-we-are" className="relative min-h-screen py-24 border-t border-[#262640]/40 flex flex-col justify-between">
-      <div className="max-w-7xl mx-auto px-6 w-full relative z-10 my-auto">
+    <section id="who-we-are" className="relative min-h-[90vh] sm:min-h-screen py-16 sm:py-24 border-t border-[#262640]/40 flex flex-col justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10 my-auto">
         {/* Section Header */}
-        <div className="flex items-center justify-between text-xs tracking-wider uppercase mb-8">
-          <span className="text-[#7b5cfa] font-bold tracking-widest">WHO WE ARE</span>
+        <div className="flex items-center justify-between text-xs tracking-wider uppercase mb-6 sm:mb-8">
+          <span className="text-[#7b5cfa] font-bold tracking-widest flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#7b5cfa]" />
+            WHO WE ARE
+          </span>
           <span className="font-mono text-[#9494a8]">02 / 08</span>
         </div>
 
         {/* Headline & Bio */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-12 sm:mb-16">
           <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white mb-6 leading-[1.05]"
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white mb-4 sm:mb-6 leading-[1.08]"
           >
             The team behind the momentum.
           </motion.h2>
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-lg sm:text-xl text-[#a0a0b8] leading-relaxed font-normal"
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ delay: 0.15, duration: 0.7 }}
+            className="text-base sm:text-lg md:text-xl text-[#a0a0b8] leading-relaxed font-normal"
           >
             Neglob Partners is a software and growth company from Jorhat, Assam. We pair sharp business thinking with design and engineering, so the brand you build and the product you ship pull in the same direction.
           </motion.p>
         </div>
 
         {/* Three Signature Pillar Cards from PDF Page 2 */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mb-16 sm:mb-20">
           {/* Card 1: Strategy first */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -6 }}
-            transition={{ duration: 0.3 }}
-            className="rounded-3xl p-8 bg-[#171728] border border-[#262640] text-white flex flex-col justify-between min-h-[300px] shadow-xl group"
+            viewport={{ once: true, margin: "-60px" }}
+            whileHover={{ y: -6, transition: { duration: 0.2 } }}
+            className="rounded-3xl p-6 sm:p-8 bg-[#171728] border border-[#262640] hover:border-[#3b3b64] text-white flex flex-col justify-between min-h-[260px] sm:min-h-[300px] shadow-xl group transition-colors"
           >
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-[#0f0f1d] border border-[#2c2c48] flex items-center justify-center text-[#c8ff25] mb-8 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-2xl bg-[#0f0f1d] border border-[#2c2c48] flex items-center justify-center text-[#c8ff25] mb-6 sm:mb-8 group-hover:scale-110 transition-transform">
                 <Target className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold tracking-tight mb-4">Strategy first</h3>
+              <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-3 sm:mb-4">Strategy first</h3>
               <p className="text-sm text-[#a0a0b8] leading-relaxed">
                 We start with your goal and your customer, then pick the channels. Never the other way round.
               </p>
             </div>
-            <div className="pt-6 border-t border-[#262640]/60 flex items-center justify-between text-xs text-[#9494a8]">
+            <div className="pt-5 sm:pt-6 border-t border-[#262640]/60 flex items-center justify-between text-xs text-[#9494a8]">
               <span>Customer centric</span>
               <span className="text-[#c8ff25]">✦</span>
             </div>
@@ -68,21 +71,21 @@ export const WhoWeAreSection: React.FC<WhoWeAreSectionProps> = ({ onNextPage }) 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.3 }}
-            whileHover={{ y: -6 }}
-            className="rounded-3xl p-8 bg-[#7b5cfa] text-white flex flex-col justify-between min-h-[300px] shadow-[0_12px_32px_rgba(123,92,250,0.3)] group"
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ delay: 0.1 }}
+            whileHover={{ y: -6, transition: { duration: 0.2 } }}
+            className="rounded-3xl p-6 sm:p-8 bg-[#7b5cfa] text-white flex flex-col justify-between min-h-[260px] sm:min-h-[300px] shadow-[0_12px_32px_rgba(123,92,250,0.3)] group"
           >
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-white mb-6 sm:mb-8 group-hover:scale-110 transition-transform">
                 <Star className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold tracking-tight mb-4">Bold creative</h3>
+              <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-3 sm:mb-4">Bold creative</h3>
               <p className="text-sm text-white/90 leading-relaxed">
                 Brands and content with a point of view, made to be remembered and shared.
               </p>
             </div>
-            <div className="pt-6 border-t border-white/20 flex items-center justify-between text-xs text-white/80">
+            <div className="pt-5 sm:pt-6 border-t border-white/20 flex items-center justify-between text-xs text-white/80">
               <span>Distinctive identity</span>
               <span>✦</span>
             </div>
@@ -92,21 +95,21 @@ export const WhoWeAreSection: React.FC<WhoWeAreSectionProps> = ({ onNextPage }) 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.3 }}
-            whileHover={{ y: -6 }}
-            className="rounded-3xl p-8 bg-[#ff5c77] text-white flex flex-col justify-between min-h-[300px] shadow-[0_12px_32px_rgba(255,92,119,0.3)] group"
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ delay: 0.2 }}
+            whileHover={{ y: -6, transition: { duration: 0.2 } }}
+            className="rounded-3xl p-6 sm:p-8 bg-[#ff5c77] text-white flex flex-col justify-between min-h-[260px] sm:min-h-[300px] shadow-[0_12px_32px_rgba(255,92,119,0.3)] group"
           >
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-white mb-6 sm:mb-8 group-hover:scale-110 transition-transform">
                 <Code2 className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold tracking-tight mb-4">Real engineering</h3>
+              <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-3 sm:mb-4">Real engineering</h3>
               <p className="text-sm text-white/95 leading-relaxed">
                 Software and websites built in-house, fast to launch and ready to grow with you.
               </p>
             </div>
-            <div className="pt-6 border-t border-white/20 flex items-center justify-between text-xs text-white/80">
+            <div className="pt-5 sm:pt-6 border-t border-white/20 flex items-center justify-between text-xs text-white/80">
               <span>Production grade</span>
               <span>✦</span>
             </div>
@@ -114,34 +117,38 @@ export const WhoWeAreSection: React.FC<WhoWeAreSectionProps> = ({ onNextPage }) 
         </div>
 
         {/* Leadership Section from PDF Page 2 */}
-        <div className="pt-10 border-t border-[#262640]/80">
+        <div className="pt-8 sm:pt-10 border-t border-[#262640]/80">
           <div className="text-xs font-bold tracking-widest uppercase text-[#7b5cfa] mb-6 flex items-center gap-2">
             <Users2 className="w-4 h-4 text-[#7b5cfa]" />
             <span>LEADERSHIP</span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-2xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-2xl">
             {COMPANY_INFO.directors.map((member) => (
-              <div key={member.name} className="flex flex-col">
+              <motion.div 
+                key={member.name} 
+                whileHover={{ x: 4 }}
+                className="flex flex-col p-4 rounded-2xl bg-[#171728]/50 border border-[#262640] transition-colors"
+              >
                 <div className="flex items-center gap-2">
-                  <span className="text-2xl font-bold text-white tracking-tight">{member.name}</span>
+                  <span className="text-xl sm:text-2xl font-bold text-white tracking-tight">{member.name}</span>
                   <ShieldCheck className="w-4 h-4 text-[#c8ff25]" />
                 </div>
-                <span className="text-sm text-[#9494a8] mt-1 font-medium">{member.role}</span>
-              </div>
+                <span className="text-xs sm:text-sm text-[#9494a8] mt-1 font-medium">{member.role}</span>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* Page Footer Navigation */}
-        <div className="mt-16 pt-6 border-t border-[#262640]/50 flex items-center justify-between text-xs text-[#9494a8]">
+        <div className="mt-12 sm:mt-16 pt-5 sm:pt-6 border-t border-[#262640]/50 flex items-center justify-between text-xs text-[#9494a8]">
           <span>neglob partners · Jorhat, Assam</span>
           <button
             onClick={onNextPage}
             className="group flex items-center gap-1.5 text-white hover:text-[#c8ff25] transition-colors"
           >
             <span>Next: grow the business</span>
-            <span className="group-hover:translate-x-1 transition-transform">→</span>
+            <span className="group-hover:translate-x-1 transition-transform text-[#c8ff25]">→</span>
           </button>
         </div>
       </div>

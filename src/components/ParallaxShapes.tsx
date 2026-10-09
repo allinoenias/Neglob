@@ -37,7 +37,7 @@ export const ParallaxShapes: React.FC<ParallaxShapesProps> = () => {
           scale: scaleVioletRaw,
           willChange: 'transform'
         }}
-        className="absolute -top-20 -right-20 sm:-top-28 sm:-right-28 md:-top-36 md:-right-36 w-60 h-60 sm:w-80 sm:h-80 md:w-[460px] md:h-[460px]"
+        className="absolute -top-24 -right-24 sm:-top-28 sm:-right-28 md:-top-36 md:-right-36 w-48 h-48 sm:w-80 sm:h-80 md:w-[460px] md:h-[460px]"
       >
         <motion.div
           animate={{
@@ -49,21 +49,21 @@ export const ParallaxShapes: React.FC<ParallaxShapesProps> = () => {
             duration: 14,
             ease: "easeInOut"
           }}
-          className="w-full h-full rounded-full bg-[#7b5cfa] opacity-65 sm:opacity-80"
+          className="w-full h-full rounded-full bg-[#7b5cfa] opacity-40 sm:opacity-75"
           style={{
-            filter: 'drop-shadow(0 0 60px rgba(123, 92, 250, 0.25))'
+            filter: 'drop-shadow(0 0 50px rgba(123, 92, 250, 0.2))'
           }}
         />
       </motion.div>
 
-      {/* 2. Mid Right Hollow Coral Ring (from PDF Page 1) */}
+      {/* 2. Mid Right Hollow Coral Ring (from PDF Page 1) - Positioned safely so it never clashes on mobile */}
       <motion.div
         style={{
           y: yCoralRingRaw,
           rotate: rotateCoralRaw,
           willChange: 'transform'
         }}
-        className="absolute top-[42vh] -right-12 sm:right-[3vw] md:right-[6vw] w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64"
+        className="absolute top-[58vh] sm:top-[48vh] -right-16 sm:right-[3vw] md:right-[6vw] w-36 h-36 sm:w-52 sm:h-52 md:w-64 md:h-64"
       >
         <motion.div
           animate={{
@@ -74,9 +74,9 @@ export const ParallaxShapes: React.FC<ParallaxShapesProps> = () => {
             duration: 8,
             ease: "easeInOut"
           }}
-          className="w-full h-full rounded-full border-[10px] sm:border-[14px] md:border-[18px] border-[#ff5c77] opacity-60 sm:opacity-85"
+          className="w-full h-full rounded-full border-[8px] sm:border-[14px] md:border-[18px] border-[#ff5c77] opacity-30 sm:opacity-80"
           style={{
-            filter: 'drop-shadow(0 0 40px rgba(255, 92, 119, 0.2))'
+            filter: 'drop-shadow(0 0 35px rgba(255, 92, 119, 0.15))'
           }}
         />
       </motion.div>
@@ -88,7 +88,7 @@ export const ParallaxShapes: React.FC<ParallaxShapesProps> = () => {
           scale: scaleLimeRaw,
           willChange: 'transform'
         }}
-        className="absolute top-[72vh] right-[10vw] sm:right-[18vw] md:right-[24vw] w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36"
+        className="absolute top-[82vh] sm:top-[74vh] right-[8vw] sm:right-[18vw] md:right-[24vw] w-16 h-16 sm:w-28 sm:h-28 md:w-36 md:h-36"
       >
         <motion.div
           animate={{
@@ -100,9 +100,9 @@ export const ParallaxShapes: React.FC<ParallaxShapesProps> = () => {
             duration: 11,
             ease: "easeInOut"
           }}
-          className="w-full h-full rounded-full bg-[#c8ff25] opacity-70 sm:opacity-90"
+          className="w-full h-full rounded-full bg-[#c8ff25] opacity-50 sm:opacity-85"
           style={{
-            filter: 'drop-shadow(0 0 45px rgba(200, 255, 37, 0.25))'
+            filter: 'drop-shadow(0 0 35px rgba(200, 255, 37, 0.2))'
           }}
         />
       </motion.div>

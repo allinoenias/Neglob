@@ -18,7 +18,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectTag, onNextPag
   return (
     <section 
       id="hero" 
-      className="relative min-h-[95vh] sm:min-h-screen pt-24 sm:pt-28 pb-12 sm:pb-16 flex flex-col justify-between overflow-hidden"
+      className="relative pt-20 sm:pt-24 lg:pt-28 pb-6 sm:pb-10 lg:pb-16 flex flex-col justify-between overflow-hidden lg:min-h-screen"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10 my-auto">
         {/* Page metadata bar like the PDF page 1 */}
@@ -26,7 +26,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectTag, onNextPag
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex items-center justify-between text-[11px] sm:text-xs tracking-wider text-[#9494a8] mb-8 sm:mb-12 uppercase font-medium"
+          className="flex items-center justify-between text-[11px] sm:text-xs tracking-wider text-[#9494a8] mb-6 sm:mb-10 uppercase font-medium"
         >
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#c8ff25] animate-ping opacity-75" />
@@ -38,10 +38,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectTag, onNextPag
         </motion.div>
 
         {/* Hero Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
           <div className="lg:col-span-8">
             {/* Monumental Staggered Headline */}
-            <div className="mb-6 sm:mb-8 overflow-hidden">
+            <div className="mb-4 sm:mb-6 overflow-hidden">
               {words.map((w, index) => (
                 <div key={w.text} className="overflow-hidden">
                   <motion.h1
@@ -69,7 +69,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectTag, onNextPag
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
-              className="text-base sm:text-lg md:text-xl text-[#a0a0b8] max-w-xl leading-relaxed mb-8 sm:mb-10 font-normal"
+              className="text-base sm:text-lg md:text-xl text-[#a0a0b8] max-w-xl leading-relaxed mb-6 sm:mb-8 font-normal"
             >
               One partner for business development, branding, marketing, social media, software and websites.{' '}
               <span className="text-white font-medium">Built in Jorhat, made to scale anywhere.</span>
@@ -99,17 +99,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectTag, onNextPag
             </motion.div>
           </div>
 
-          {/* Interactive Visual Graphic Area (Page 1 Motif) */}
-          <div className="lg:col-span-4 flex justify-center lg:justify-end relative mt-4 lg:mt-0">
+          {/* Graphic Area (Page 1 Motif) - Visible on desktop, hidden on mobile to eliminate huge dead gap */}
+          <div className="hidden lg:flex lg:col-span-4 justify-end relative">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ scale: 1.03 }}
-              className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-72 md:h-72"
+              className="relative w-64 h-64 md:w-72 md:h-72"
             >
               {/* Central Hollow Coral Ring from PDF page 1 */}
-              <div className="w-full h-full rounded-full border-[14px] sm:border-[18px] border-[#ff5c77] shadow-[0_0_60px_rgba(255,92,119,0.25)] flex items-center justify-center relative transition-transform">
+              <div className="w-full h-full rounded-full border-[18px] border-[#ff5c77] shadow-[0_0_60px_rgba(255,92,119,0.25)] flex items-center justify-center relative transition-transform">
                 {/* Inner floating lime orb */}
                 <motion.div
                   animate={{
@@ -121,22 +121,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectTag, onNextPag
                     duration: 6,
                     ease: "easeInOut"
                   }}
-                  className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#c8ff25] shadow-[0_0_35px_rgba(200,255,37,0.35)] flex items-center justify-center cursor-pointer"
+                  className="w-16 h-16 rounded-full bg-[#c8ff25] shadow-[0_0_35px_rgba(200,255,37,0.35)] flex items-center justify-center cursor-pointer"
                   onClick={onNextPage}
                 >
-                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-[#0f0f1d]" />
+                  <Sparkles className="w-6 h-6 text-[#0f0f1d]" />
                 </motion.div>
               </div>
             </motion.div>
           </div>
         </div>
 
-        {/* Page 1 Bottom Footer Bar */}
+        {/* Page 1 Bottom Footer Bar - snug and compact without giant vertical void */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.9 }}
-          className="mt-12 sm:mt-16 pt-5 sm:pt-6 border-t border-[#262640]/50 flex items-center justify-between text-xs text-[#9494a8]"
+          transition={{ delay: 0.85 }}
+          className="mt-8 sm:mt-12 pt-4 sm:pt-5 border-t border-[#262640]/50 flex items-center justify-between text-xs text-[#9494a8]"
         >
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#c8ff25]" />

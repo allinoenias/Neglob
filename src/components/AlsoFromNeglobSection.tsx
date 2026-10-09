@@ -23,7 +23,7 @@ export const AlsoFromNeglobSection: React.FC<AlsoFromNeglobSectionProps> = ({ on
   };
 
   return (
-    <section id="also" className="relative min-h-[90vh] sm:min-h-screen py-16 sm:py-24 border-t border-[#262640]/40 flex flex-col justify-between">
+    <section id="also" className="relative min-h-0 lg:min-h-screen py-10 sm:py-16 lg:py-24 border-t border-[#262640]/40 flex flex-col justify-between">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10 my-auto">
         {/* Section Header */}
         <div className="flex items-center justify-between text-xs tracking-wider uppercase mb-6 sm:mb-8">

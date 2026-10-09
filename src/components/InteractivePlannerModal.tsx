@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, CheckCircle, MessageSquare, Send, ArrowRight } from 'lucide-react';
 import { HERO_TAGS, COMPANY_INFO } from '../data/content';
@@ -23,6 +23,18 @@ export const InteractivePlannerModal: React.FC<InteractivePlannerModalProps> = (
   const [timeline, setTimeline] = useState('Within 1 Month');
   const [notes, setNotes] = useState('');
   const [submitted, setSubmitted] = useState(false);
+
+  // Lock body scroll while modal is active on mobile
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -84,40 +96,51 @@ export const InteractivePlannerModal: React.FC<InteractivePlannerModalProps> = (
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      <div className="fixed inset-0 z-50 overflow-y-auto flex items-start sm:items-center justify-center p-3 sm:p-6 pt-3 pb-12 sm:py-8">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-black/80 backdrop-blur-md"
+          className="fixed inset-0 bg-black/85 backdrop-blur-md"
         />
 
         {/* Modal Window */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          initial={{ opacity: 0, scale: 0.95, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-2xl bg-[#141424] border border-[#2a2a46] rounded-3xl p-5 sm:p-10 text-white shadow-2xl z-10 my-6 sm:my-8 overflow-hidden"
+          exit={{ opacity: 0, scale: 0.95, y: 15 }}
+          className="relative w-full max-w-2xl bg-[#141424] border border-[#2a2a46] rounded-2xl sm:rounded-3xl p-4 sm:p-10 text-white shadow-2xl z-10 my-2 sm:my-6 overflow-hidden"
         >
-          {/* Prominent High-Contrast Close Button */}
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 rounded-full bg-[#202038] hover:bg-[#2e2e50] border border-[#38385e] hover:border-[#c8ff25]/40 text-white hover:text-[#c8ff25] flex items-center justify-center transition-all shadow-md active:scale-90 z-20"
-            aria-label="Close popup window"
-            title="Close"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          {/* Permanent Sticky Top Header Bar with guaranteed visible Close button */}
+          <div className="sticky top-0 -mx-4 -mt-4 sm:-mx-10 sm:-mt-10 px-4 sm:px-10 py-3 sm:py-4 bg-[#141424]/98 backdrop-blur-md border-b border-[#2a2a46] flex items-center justify-between z-30 mb-5 sm:mb-6 shadow-sm">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#c8ff25]" />
+              <span className="text-xs font-bold text-[#c8ff25] tracking-widest uppercase">
+                Project Planner
+              </span>
+            </div>
+
+            <button
+              type="button"
+              onClick={onClose}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#202038] hover:bg-[#2c2c4d] text-white hover:text-[#c8ff25] border border-[#38385e] hover:border-[#c8ff25]/40 text-xs font-bold transition-all active:scale-95 shadow-md"
+              aria-label="Close popup window"
+              title="Close window"
+            >
+              <span>Close</span>
+              <X className="w-4 h-4 text-[#c8ff25]" />
+            </button>
+          </div>
 
           {submitted ? (
-            <div className="py-8 text-center">
-              <div className="w-16 h-16 rounded-full bg-[#c8ff25]/20 text-[#c8ff25] flex items-center justify-center mx-auto mb-6">
+            <div className="py-6 sm:py-8 text-center">
+              <div className="w-16 h-16 rounded-full bg-[#c8ff25]/20 text-[#c8ff25] flex items-center justify-center mx-auto mb-5">
                 <CheckCircle className="w-10 h-10" />
               </div>
-              <h3 className="text-3xl font-black mb-2">Roadmap Requested</h3>
-              <p className="text-[#a0a0b8] max-w-md mx-auto mb-2 text-sm">
+              <h3 className="text-2xl sm:text-3xl font-black mb-2">Roadmap Requested</h3>
+              <p className="text-[#a0a0b8] max-w-md mx-auto mb-2 text-xs sm:text-sm">
                 Thank you, <span className="text-white font-semibold">{name || 'Partner'}</span>. Your project brief has been formatted for delivery to:
               </p>
               <div className="inline-block px-3 py-1 rounded-full bg-[#1b1b2f] border border-[#30304e] text-xs font-mono text-[#c8ff25] mb-6">
@@ -134,7 +157,7 @@ export const InteractivePlannerModal: React.FC<InteractivePlannerModalProps> = (
                   <span>Send via Email Client</span>
                 </a>
 
-                {/* WhatsApp Action (kept as requested) */}
+                {/* WhatsApp Action */}
                 <a
                   href={`https://wa.me/918486820329?text=${whatsappMessage}`}
                   target="_blank"
@@ -147,19 +170,17 @@ export const InteractivePlannerModal: React.FC<InteractivePlannerModalProps> = (
               </div>
 
               <button
+                type="button"
                 onClick={onClose}
-                className="px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#222238] hover:bg-[#2c2c48] text-[#9494a8] hover:text-white transition-colors"
+                className="w-full sm:w-auto px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#222238] hover:bg-[#2c2c48] text-white transition-colors border border-[#343456]"
               >
                 Close Window
               </button>
             </div>
           ) : (
             <div>
-              <div className="mb-6">
-                <span className="text-xs font-bold text-[#c8ff25] tracking-widest uppercase">
-                  Project Planner
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-black tracking-tight mt-1 text-white">
+              <div className="mb-5 sm:mb-6">
+                <h3 className="text-xl sm:text-3xl font-black tracking-tight text-white">
                   Let's shape your roadmap.
                 </h3>
                 <p className="text-xs sm:text-sm text-[#9494a8] mt-1">
@@ -167,10 +188,10 @@ export const InteractivePlannerModal: React.FC<InteractivePlannerModalProps> = (
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
                 {/* Services multi-select */}
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-[#9494a8] mb-2.5">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#9494a8] mb-2 sm:mb-2.5">
                     What capabilities do you need?
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -205,7 +226,7 @@ export const InteractivePlannerModal: React.FC<InteractivePlannerModalProps> = (
                         type="button"
                         key={t}
                         onClick={() => setTimeline(t)}
-                        className={`py-2 px-3 rounded-xl text-xs font-medium border text-center transition-all ${
+                        className={`py-2 px-2 sm:px-3 rounded-xl text-[11px] sm:text-xs font-medium border text-center transition-all ${
                           timeline === t
                             ? 'bg-[#7b5cfa]/20 border-[#7b5cfa] text-[#c8ff25]'
                             : 'bg-[#0f0f1d] border-[#262640] text-[#9494a8] hover:border-[#38385e]'
